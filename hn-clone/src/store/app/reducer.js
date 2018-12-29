@@ -1,8 +1,19 @@
-import { combineReducers } from 'redux';
-import app from './app/reducer';
+import { actionTypes } from './actions';
 
-const rootReducer = combineReducers({
-    app,
+const getInitialState = () => ({
+    theme: 'dark',
 });
 
-export default rootReducer;
+const app = (state = getInitialState(), { type, payload }) => {
+    switch (type) {
+        case actionTypes.SET_THEME:
+            return {
+                ...state,
+                ...payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export default app;
